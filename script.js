@@ -93,6 +93,9 @@ function play() {
     // Spin record
     record.classList.add('playing');
 
+    // Animate musical notes
+    animateNotes(true);
+
     // Update display
     playStatusDisplay.textContent = '🎵 Music is playing...';
 }
@@ -110,11 +113,31 @@ function pause() {
     // Stop record spin
     record.classList.remove('playing');
 
+    // Stop musical notes animation
+    animateNotes(false);
+
     // Reset music position
     musicPlayer.currentTime = 0;
 
     // Update display
     playStatusDisplay.textContent = '⏸ Paused - Ready to drop the needle';
+}
+
+function animateNotes(isPlaying) {
+    const notes = [
+        document.getElementById('noteLeft1'),
+        document.getElementById('noteLeft2'),
+        document.getElementById('noteRight1'),
+        document.getElementById('noteRight2')
+    ];
+
+    notes.forEach(note => {
+        if (isPlaying) {
+            note.classList.add('playing');
+        } else {
+            note.classList.remove('playing');
+        }
+    });
 }
 
 // ==================== STATUS DISPLAY ====================
