@@ -4,6 +4,7 @@ const cracklePlayer = document.getElementById('cracklePlayer');
 
 // ==================== DOM ELEMENTS ====================
 const mp3Upload = document.getElementById('mp3Upload');
+const albumArtUpload = document.getElementById('albumArtUpload');
 const tonearm = document.getElementById('tonearm');
 const record = document.querySelector('.record');
 const songNameDisplay = document.getElementById('songName');
@@ -14,6 +15,7 @@ const albumArt = document.getElementById('albumArt');
 let isPlaying = false;
 let currentSongName = '';
 let currentSongFile = null;
+let currentAlbumArt = null;
 let savedRecords = [];
 
 // ==================== INITIALIZATION ====================
@@ -29,6 +31,9 @@ function init() {
 function setupEventListeners() {
     // File upload handler
     mp3Upload.addEventListener('change', handleFileUpload);
+    
+    // Album art upload handler
+    albumArtUpload.addEventListener('change', handleAlbumArtUpload);
 
     // Tonearm click handler
     tonearm.addEventListener('click', togglePlayback);
@@ -59,6 +64,37 @@ function handleFileUpload(event) {
     // Update display
     updateStatusDisplay();
     renderSaveButton();
+}
+
+// ==================== ALBUM ART UPLOAD ====================
+function handleAlbumArtUpload(event) {
+    const file = event.target.files[0];
+    
+    if (!file) return;
+
+    // Validate file is an image
+    if (!file.type.includes('image')) {
+        alert('Please upload an image file');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        currentAlbumArt = e.target.result;
+        displayAlbumArt(currentAlbumArt);
+    };
+
+    reader.readAsDataURL(file);
+}
+
+// ==================== DISPLAY ALBUM ART ====================
+function displayAlbumArt(artData) {
+    albumArt.innerHTML = `<img src="${artData}" alt="Album Art">`;
+}
+
+function clearAlbumArt() {
+    currentAlbumArt = null;
+    albumArt.innerHTML = '<span class="album-placeholder">♪</span>';
 }
 
 // ==================== PLAYBACK CONTROL ====================
@@ -172,11 +208,20 @@ function checkForLoadRequest() {
 function loadRecordFromCollection(record) {
     currentSongFile = record.fileData;
     currentSongName = record.name;
+    currentAlbumArt = record.albumArt || null;
     musicPlayer.src = currentSongFile;
+    
+    if (currentAlbumArt) {
+        displayAlbumArt(currentAlbumArt);
+    } else {
+        clearAlbumArt();
+    }
+    
     updateStatusDisplay();
 
     // Clear file input
     mp3Upload.value = '';
+    albumArtUpload.value = '';
 
     // Remove save button if visible
     const saveBtn = document.querySelector('.btn-save');
@@ -211,7 +256,8 @@ function saveCurrentRecord() {
             id: Date.now(),
             name: currentSongName,
             dateAdded: new Date().toLocaleDateString(),
-            fileData: base64Data
+            fileData: base64Data,
+            albumArt: currentAlbumArt
         };
 
         savedRecords.push(newRecord);

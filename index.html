@@ -47,15 +47,26 @@
 
                 <!-- Controls -->
                 <div class="controls">
-                    <label for="mp3Upload" class="upload-label">
-                        <input 
-                            type="file" 
-                            id="mp3Upload" 
-                            accept=".mp3"
-                            class="file-input"
-                        >
-                        <span class="upload-button">📁 Upload MP3</span>
-                    </label>
+                    <div class="upload-section">
+                        <label for="mp3Upload" class="upload-label">
+                            <input 
+                                type="file" 
+                                id="mp3Upload" 
+                                accept=".mp3"
+                                class="file-input"
+                            >
+                            <span class="upload-button">📁 Upload MP3</span>
+                        </label>
+                        <label for="albumArtUpload" class="upload-label">
+                            <input 
+                                type="file" 
+                                id="albumArtUpload" 
+                                accept="image/*"
+                                class="file-input"
+                            >
+                            <span class="upload-button upload-button-secondary">🖼 Album Art</span>
+                        </label>
+                    </div>
                     <div class="status-display" id="status">
                         <p id="songName">No song loaded</p>
                         <p id="playStatus">Ready to drop the needle</p>

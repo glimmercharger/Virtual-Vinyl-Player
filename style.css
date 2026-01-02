@@ -331,6 +331,13 @@ header h1 {
     align-items: center;
 }
 
+.upload-section {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .file-input {
     display: none;
 }
@@ -355,6 +362,15 @@ header h1 {
 .upload-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.upload-button-secondary {
+    background: linear-gradient(135deg, #4ecdc4 0%, #44af9d 100%);
+    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+}
+
+.upload-button-secondary:hover {
+    box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
 }
 
 .status-display {
