@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Vinyl Collection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎼 Your Vinyl Collection</h1>
+            <p class="subtitle">All your previously played records in one place</p>
+        </header>
+
+        <div class="collection-content">
+            <!-- Navigation -->
+            <div class="collection-nav">
+                <a href="index.html" class="nav-button">← Back to Player</a>
+            </div>
+
+            <!-- Stats -->
+            <div class="collection-stats">
+                <div class="stat-box">
+                    <div class="stat-number" id="totalRecords">0</div>
+                    <div class="stat-label">Total Records</div>
+                </div>
+            </div>
+
+            <!-- Records Display -->
+            <div class="collection-grid" id="collectionGrid">
+                <p class="empty-message">No records in your collection yet. Upload and save songs from the player!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="collection.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Vinyl Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎵 Virtual Vinyl Player</h1>
+            <p class="subtitle">Upload your MP3 and let the needle drop</p>
+            <a href="collection.html" class="collection-link">📚 View Your Collection</a>
+        </header>
+
+        <div class="main-content">
+            <!-- Left Speaker -->
+            <div class="speaker speaker-left">
+                <div class="speaker-body">
+                    <div class="speaker-cone"></div>
+                    <div class="speaker-center"></div>
+                </div>
+                <div class="musical-note note-1" id="noteLeft1">♪</div>
+                <div class="musical-note note-2" id="noteLeft2">♫</div>
+            </div>
+
+            <!-- Player Section -->
+            <div class="player-section">
+                <!-- Player Base -->
+                <div class="player-base">
+                    <!-- Record -->
+                    <div class="record">
+                        <div class="record-center">
+                            <div class="album-art" id="albumArt">
+                                <span class="album-placeholder">♪</span>
+                            </div>
+                        </div>
+                        <div class="record-vinyl"></div>
+                    </div>
+
+                    <!-- Tonearm -->
+                    <div class="tonearm" id="tonearm">
+                        <div class="tonearm-head"></div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="controls">
+                    <label for="mp3Upload" class="upload-label">
+                        <input 
+                            type="file" 
+                            id="mp3Upload" 
+                            accept=".mp3"
+                            class="file-input"
+                        >
+                        <span class="upload-button">📁 Upload MP3</span>
+                    </label>
+                    <div class="status-display" id="status">
+                        <p id="songName">No song loaded</p>
+                        <p id="playStatus">Ready to drop the needle</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <!-- Right Speaker -->
+            <div class="speaker speaker-right">
+                <div class="speaker-body">
+                    <div class="speaker-cone"></div>
+                    <div class="speaker-center"></div>
+                </div>
+                <div class="musical-note note-1" id="noteRight1">♪</div>
+                <div class="musical-note note-2" id="noteRight2">♫</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden audio elements -->
+    <audio id="musicPlayer" crossorigin="anonymous"></audio>
+    <audio id="cracklePlayer" loop crossorigin="anonymous">
+        <source src="https://www.soundjay.com/misc/sounds/record-player-static-01.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
