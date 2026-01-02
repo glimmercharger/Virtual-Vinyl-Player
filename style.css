@@ -92,37 +92,37 @@ header h1 {
 }
 
 .speaker-body {
-    width: 60px;
-    height: 80px;
+    width: 140px;
+    height: 180px;
     background: linear-gradient(135deg, #3e3e3e 0%, #1a1a1a 100%);
-    border-radius: 8px;
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    gap: 25px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
     position: relative;
 }
 
 .speaker-cone {
-    width: 40px;
-    height: 40px;
+    width: 90px;
+    height: 90px;
     background: radial-gradient(circle at 30% 30%, #555, #222);
     border-radius: 50%;
-    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 6px 12px rgba(0, 0, 0, 0.6);
 }
 
 .speaker-center {
-    width: 12px;
-    height: 12px;
+    width: 24px;
+    height: 24px;
     background: #d4af37;
     border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .musical-note {
-    font-size: 1.5rem;
+    font-size: 3rem;
     color: #ff6b6b;
     opacity: 0;
     position: absolute;
@@ -130,13 +130,13 @@ header h1 {
 }
 
 .note-1 {
-    right: -15px;
-    top: 5px;
+    right: -30px;
+    top: 15px;
 }
 
 .note-2 {
-    right: -35px;
-    top: 20px;
+    right: -70px;
+    top: 40px;
 }
 
 .musical-note.playing {
@@ -174,13 +174,13 @@ header h1 {
 
 #noteRight1 {
     animation-delay: 0s;
-    left: -15px;
+    left: -30px;
     transform: scaleX(-1);
 }
 
 #noteRight2 {
     animation-delay: 0.2s;
-    left: -35px;
+    left: -70px;
     transform: scaleX(-1);
 }
 
