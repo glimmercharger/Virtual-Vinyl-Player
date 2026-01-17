@@ -26,12 +26,14 @@ function init() {
     applyTheme();
     cracklePlayer.volume = 0.3; // Keep crackle at lower volume
     musicPlayer.volume = 0.7;
+    console.log('Player initialized with theme:', document.body.className);
 }
 
 // ==================== APPLY THEME ====================
 function applyTheme() {
     const theme = localStorage.getItem('colorTheme') || 'default';
     document.body.className = `theme-${theme}`;
+    console.log('Applying theme:', theme, 'Body class:', document.body.className);
 }
 
 // ==================== EVENT LISTENERS ====================
