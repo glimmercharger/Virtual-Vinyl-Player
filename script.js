@@ -23,8 +23,15 @@ function init() {
     loadSavedRecords();
     setupEventListeners();
     checkForLoadRequest();
+    applyTheme();
     cracklePlayer.volume = 0.3; // Keep crackle at lower volume
     musicPlayer.volume = 0.7;
+}
+
+// ==================== APPLY THEME ====================
+function applyTheme() {
+    const theme = localStorage.getItem('colorTheme') || 'default';
+    document.body.className = `theme-${theme}`;
 }
 
 // ==================== EVENT LISTENERS ====================

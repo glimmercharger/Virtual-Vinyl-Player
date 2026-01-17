@@ -736,3 +736,261 @@ header h1 {
         min-width: 100%;
     }
 }
+
+/* ==================== SETTINGS PAGE ==================== */
+.settings-container {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.settings-section {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.settings-section h2 {
+    color: #2d2d2d;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.setting-item {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.setting-item:last-child {
+    margin-bottom: 0;
+}
+
+.setting-item label {
+    color: #2d2d2d;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.setting-item input[type="range"] {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: #e0e0e0;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.setting-item input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #4ecdc4;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.setting-item input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #4ecdc4;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.setting-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #4ecdc4;
+}
+
+.setting-item select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    background: white;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #2d2d2d;
+    transition: border-color 0.3s ease;
+}
+
+.setting-item select:focus {
+    outline: none;
+    border-color: #4ecdc4;
+}
+
+.setting-item span {
+    color: #6b5b4e;
+    font-weight: 600;
+    min-width: 50px;
+}
+
+.setting-description {
+    color: #6b5b4e;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.about-text {
+    color: #6b5b4e;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(127, 140, 141, 0.4);
+}
+
+/* ==================== COLOR THEMES ==================== */
+
+/* Default Theme (Classic Beige) */
+body.theme-default {
+    background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 100%) !important;
+}
+
+/* Dark Mode Theme */
+body.theme-dark {
+    background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%) !important;
+}
+
+body.theme-dark header h1,
+body.theme-dark .subtitle,
+body.theme-dark .collection-stats,
+body.theme-dark .stat-label,
+body.theme-dark .stat-number {
+    color: #ecf0f1 !important;
+}
+
+body.theme-dark .player-base {
+    background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+}
+
+body.theme-dark .settings-section,
+body.theme-dark .collection-card {
+    background: #34495e !important;
+    color: #ecf0f1;
+}
+
+body.theme-dark .settings-section h2,
+body.theme-dark .setting-item label,
+body.theme-dark .about-text,
+body.theme-dark .setting-description {
+    color: #ecf0f1 !important;
+}
+
+/* Retro Orange Theme */
+body.theme-retro {
+    background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 100%) !important;
+}
+
+body.theme-retro header h1 {
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+body.theme-retro .subtitle {
+    color: #ffe8d6 !important;
+}
+
+body.theme-retro .player-base {
+    background: linear-gradient(135deg, #ff8243 0%, #ff5722 100%);
+}
+
+body.theme-retro .collection-link {
+    background: linear-gradient(135deg, #ff5722 0%, #f4511e 100%);
+}
+
+body.theme-retro .settings-section,
+body.theme-retro .collection-card {
+    background: #ffd4a3 !important;
+}
+
+/* Midnight Blue Theme */
+body.theme-midnight {
+    background: linear-gradient(135deg, #1e3a5f 0%, #0f2342 100%) !important;
+}
+
+body.theme-midnight header h1,
+body.theme-midnight .subtitle {
+    color: #a8d8ea !important;
+}
+
+body.theme-midnight .player-base {
+    background: linear-gradient(135deg, #2c5f8d 0%, #1e3a5f 100%);
+}
+
+body.theme-midnight .collection-link {
+    background: linear-gradient(135deg, #5499c7 0%, #2e86ab 100%);
+}
+
+body.theme-midnight .settings-section,
+body.theme-midnight .collection-card {
+    background: #2c5f8d !important;
+    color: #ecf0f1;
+}
+
+body.theme-midnight .settings-section h2,
+body.theme-midnight .setting-item label,
+body.theme-midnight .about-text,
+body.theme-midnight .setting-description,
+body.theme-midnight .stat-label,
+body.theme-midnight .stat-number {
+    color: #a8d8ea !important;
+}
+
+/* Forest Green Theme */
+body.theme-forest {
+    background: linear-gradient(135deg, #52796f 0%, #354f52 100%) !important;
+}
+
+body.theme-forest header h1 {
+    color: #cad2c5 !important;
+}
+
+body.theme-forest .subtitle {
+    color: #84a98c !important;
+}
+
+body.theme-forest .player-base {
+    background: linear-gradient(135deg, #52796f 0%, #2f3e46 100%);
+}
+
+body.theme-forest .collection-link {
+    background: linear-gradient(135deg, #84a98c 0%, #52796f 100%);
+}
+
+body.theme-forest .settings-section,
+body.theme-forest .collection-card {
+    background: #84a98c !important;
+    color: #2f3e46;
+}
+
+body.theme-forest .settings-section h2,
+body.theme-forest .setting-item label {
+    color: #2f3e46 !important;
+}
+
+body.theme-forest .about-text,
+body.theme-forest .setting-description {
+    color: #354f52 !important;
+}

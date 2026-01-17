@@ -8,7 +8,14 @@ let savedRecords = [];
 // ==================== INITIALIZATION ====================
 function init() {
     loadSavedRecords();
+    applyTheme();
     renderCollection();
+}
+
+// ==================== APPLY THEME ====================
+function applyTheme() {
+    const theme = localStorage.getItem('colorTheme') || 'default';
+    document.body.className = `theme-${theme}`;
 }
 
 // ==================== LOAD RECORDS ====================

@@ -11,10 +11,10 @@
         <header>
             <h1>🎵 Virtual Vinyl Player</h1>
             <p class="subtitle">Upload your MP3 and let the needle drop</p>
+        <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
             <a href="collection.html" class="collection-link">📚 View Your Collection</a>
-        </header>
-
-        <div class="main-content">
+            <a href="settings.html" class="collection-link">⚙️ Settings</a>
+        </div>
             <!-- Left Speaker -->
             <div class="speaker speaker-left">
                 <div class="speaker-body">
@@ -56,15 +56,6 @@
                                 class="file-input"
                             >
                             <span class="upload-button">📁 Upload MP3</span>
-                        </label>
-                        <label for="albumArtUpload" class="upload-label">
-                            <input 
-                                type="file" 
-                                id="albumArtUpload" 
-                                accept="image/*"
-                                class="file-input"
-                            >
-                            <span class="upload-button upload-button-secondary">🖼 Album Art</span>
                         </label>
                     </div>
                     <div class="status-display" id="status">

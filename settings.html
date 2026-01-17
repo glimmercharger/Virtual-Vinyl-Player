@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Virtual Vinyl Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚙️ Settings</h1>
+            <p class="subtitle">Customize your vinyl experience</p>
+            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
+                <a href="index.html" class="collection-link">🎵 Player</a>
+                <a href="collection.html" class="collection-link">📚 Collection</a>
+            </div>
+        </header>
+
+        <div class="settings-container">
+            <div class="settings-section">
+                <h2>🔊 Audio Settings</h2>
+                <div class="setting-item">
+                    <label for="musicVolume">Music Volume</label>
+                    <input type="range" id="musicVolume" min="0" max="100" value="70">
+                    <span id="musicVolumeValue">70%</span>
+                </div>
+                <div class="setting-item">
+                    <label for="crackleVolume">Vinyl Crackle Volume</label>
+                    <input type="range" id="crackleVolume" min="0" max="100" value="30">
+                    <span id="crackleVolumeValue">30%</span>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>🎨 Display Settings</h2>
+                <div class="setting-item">
+                    <label for="colorTheme">Color Theme</label>
+                    <select id="colorTheme">
+                        <option value="default">Classic Beige</option>
+                        <option value="dark">Dark Mode</option>
+                        <option value="retro">Retro Orange</option>
+                        <option value="midnight">Midnight Blue</option>
+                        <option value="forest">Forest Green</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="animationSpeed">Animation Speed</label>
+                    <select id="animationSpeed">
+                        <option value="slow">Slow</option>
+                        <option value="normal" selected>Normal</option>
+                        <option value="fast">Fast</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="showNotes" checked>
+                        Show Musical Notes
+                    </label>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>💾 Data Management</h2>
+                <div class="setting-item">
+                    <button class="record-button" id="clearCollection">Clear All Records</button>
+                    <p class="setting-description">This will permanently delete all saved records from your collection.</p>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>ℹ️ About</h2>
+                <p class="about-text">Virtual Vinyl Player v1.0</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html>
