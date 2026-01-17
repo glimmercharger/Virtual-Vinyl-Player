@@ -38,6 +38,18 @@ function applyTheme() {
 
 // ==================== EVENT LISTENERS ====================
 function setupEventListeners() {
+    // Listen for theme changes from other tabs/pages
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'colorTheme') {
+            applyTheme();
+        }
+    });
+
+    // Listen for when page comes back into focus (user returns from settings page)
+    window.addEventListener('pageshow', () => {
+        applyTheme();
+    });
+
     // File upload handler
     mp3Upload.addEventListener('change', handleFileUpload);
     
