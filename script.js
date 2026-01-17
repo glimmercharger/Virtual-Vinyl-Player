@@ -56,14 +56,112 @@ function handleFileUpload(event) {
 
     // Create object URL for the file
     currentSongFile = URL.createObjectURL(file);
-    currentSongName = file.name.replace('.mp3', '');
+    currentSongName = file.name.replace('.mp3', '').replace(/\.[^/.]+$/, '');
 
     // Set the music player source
     musicPlayer.src = currentSongFile;
 
+    // Extract album art from MP3 metadata
+    console.log('Starting album art extraction for:', file.name);
+    extractAlbumArtFromMP3(file);
+
     // Update display
     updateStatusDisplay();
     renderSaveButton();
+}
+
+// ==================== EXTRACT ALBUM ART FROM MP3 ====================
+function extractAlbumArtFromMP3(file) {
+    // Clear previous album art first
+    clearAlbumArt();
+
+    console.log('Starting metadata extraction...');
+    
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+        const arrayBuffer = e.target.result;
+        const view = new Uint8Array(arrayBuffer);
+        
+        // Look for ID3v2 header (should be at the start: "ID3")
+        if (view[0] === 73 && view[1] === 68 && view[2] === 51) { // "ID3"
+            console.log('ID3v2 tag found');
+            
+            // Parse ID3v2 header
+            const version = view[3];
+            console.log('ID3 Version:', version);
+            
+            // Get tag size (7-bit encoding)
+            const tagSize = ((view[6] & 0x7f) << 21) | 
+                           ((view[7] & 0x7f) << 14) | 
+                           ((view[8] & 0x7f) << 7) | 
+                           (view[9] & 0x7f);
+            
+            console.log('Tag size:', tagSize);
+            
+            // Look for APIC frame (album art)
+            const frameData = view.slice(10, 10 + tagSize);
+            const frameText = String.fromCharCode.apply(null, frameData);
+            
+            const apicIndex = frameText.indexOf('APIC');
+            if (apicIndex !== -1) {
+                console.log('APIC frame found at position', apicIndex);
+                try {
+                    // Simple extraction - look for image data after APIC header
+                    // This is a basic approach
+                    const frameStart = apicIndex;
+                    
+                    // Skip frame header (APIC + size + flags = 10 bytes)
+                    let pos = frameStart + 10;
+                    
+                    // Skip encoding byte
+                    pos += 1;
+                    
+                    // Find MIME type string (null-terminated)
+                    let mimeEnd = frameData.indexOf(0, pos);
+                    const mimeType = String.fromCharCode.apply(null, frameData.slice(pos, mimeEnd)) || 'image/jpeg';
+                    
+                    pos = mimeEnd + 1;
+                    
+                    // Skip picture type
+                    pos += 1;
+                    
+                    // Skip description (null-terminated)
+                    let descEnd = frameData.indexOf(0, pos);
+                    pos = descEnd + 1;
+                    
+                    // Rest is image data
+                    const imageData = frameData.slice(pos);
+                    
+                    if (imageData.length > 0) {
+                        // Convert to base64
+                        let binary = '';
+                        for (let i = 0; i < imageData.length; i++) {
+                            binary += String.fromCharCode(imageData[i]);
+                        }
+                        const base64 = btoa(binary);
+                        const imageUrl = `data:${mimeType};base64,${base64}`;
+                        currentAlbumArt = imageUrl;
+                        displayAlbumArt(imageUrl);
+                        console.log('Album art extracted successfully');
+                        return;
+                    }
+                } catch (err) {
+                    console.error('Error parsing APIC frame:', err);
+                }
+            }
+        }
+        
+        console.log('No album art found in ID3 tags');
+    };
+    
+    reader.onerror = function() {
+        console.error('Error reading file');
+    };
+    
+    // Read only the first 100KB to get the ID3 tag (should be sufficient)
+    const blob = file.slice(0, 102400);
+    reader.readAsArrayBuffer(blob);
 }
 
 // ==================== ALBUM ART UPLOAD ====================
@@ -132,7 +230,8 @@ function play() {
     // Animate musical notes
     animateNotes(true);
 
-    // Update display
+    // Update display with song name and playing status
+    songNameDisplay.textContent = currentSongName || 'Unnamed Song';
     playStatusDisplay.textContent = '🎵 Music is playing...';
 }
 
@@ -155,7 +254,8 @@ function pause() {
     // Reset music position
     musicPlayer.currentTime = 0;
 
-    // Update display
+    // Update display with song name and paused status
+    songNameDisplay.textContent = currentSongName || 'Unnamed Song';
     playStatusDisplay.textContent = '⏸ Paused - Ready to drop the needle';
 }
 
